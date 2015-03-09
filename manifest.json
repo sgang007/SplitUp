@@ -1,18 +1,22 @@
 {
   "manifest_version": 2,
 
-  "name": "SplitWiseUpdater",
-  "description": "This extension updates data to SplitWise site",
+  "name": "SplitUp",
+  "description": "Client for your splitwise gives notifications",
   "version": "1.0",
+  "version_name": "SplitUp1.0",
+  "homepage_url": "http://sgang007.github.io/SplitUp",
+  "offline_enabled": true,
   "browser_action": {
-    "default_icon": "spwlogo.png",
+    "default_icon": "images/spwlogo.png",
+    "default_title": "SplitUp",
     "default_popup": "popup.html"
 
   },
   "content_scripts": [
     {
       "matches": [ "*://*.splitwise.com/*" ],
-      "css": ["mystyles.css"],
+      "css": ["css/mystyles.css"],
       "js": ["js/jquery.js", "js/jquery.watch-2.0.min.js", "js/init.js"]
     }
   ],
