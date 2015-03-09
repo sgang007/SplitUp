@@ -1,6 +1,19 @@
-.container {
-    height: 300px;
+.container h1{
+    height: 50px;
     width:300px;
-    color: blue;
+    color: red;
     font-weight: bold;
+}
+.nav a {
+  color: #5a5a5a;
+  font-size: 15px;
+  font-weight: bold;  
+  text-transform: uppercase;
+}
+
+.nav li {
+  display: inline;
+  background-color: #FFF5CD;
+  height: auto;
+  width: auto;
 }
