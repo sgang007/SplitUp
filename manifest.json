@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "SplitWiseUpdater",
+  "description": "This extension updates data to SplitWise site",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "spwlogo.png",
+    "default_popup": "popup.html"
+
+  },
+  "content_scripts": [
+    {
+      "matches": [ "*://*.splitwise.com/*" ],
+      "css": ["mystyles.css"],
+      "js": ["js/jquery.js", "js/jquery.watch-2.0.min.js", "js/init.js"]
+    }
+  ],
+
+  "background": {
+    "scripts": ["js/jquery.js"]
+  },
+  "permissions": ["contextMenus", "tabs"]
+
+ }
