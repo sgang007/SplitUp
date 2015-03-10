@@ -31,8 +31,8 @@ import time
 import oauth.oauth as oauth
 
 # settings for the local test consumer
-SERVER = 'localhost'
-PORT = 8080
+SERVER = 'secure.splitwise.com'
+PORT = 443
 
 # fake urls for the test server (matches ones in server.py)
 REQUEST_TOKEN_URL = 'https://secure.splitwise.com/api/v3.0/get_request_token'
@@ -54,7 +54,7 @@ class SimpleOAuthClient(oauth.OAuthClient):
         self.request_token_url = request_token_url
         self.access_token_url = access_token_url
         self.authorization_url = authorization_url
-        self.connection = httplib.HTTPConnection("%s:%d" % (self.server, self.port))
+        self.connection = httplib.HTTPSConnection("%s:%d" % (self.server, self.port))
 
     def fetch_request_token(self, oauth_request):
         # via headers
@@ -98,7 +98,7 @@ def run_example():
     # get request token
     print '* Obtain a request token ...'
     pause()
-    oauth_request = oauth.OAuthRequest.from_consumer_and_token(consumer, callback=CALLBACK_URL, http_url=client.request_token_url)
+    oauth_request = oauth.OAuthRequest.from_consumer_and_token(consumer, callback=CALLBACK_URL, http_url=client.request_token_url,http_method="POST")
     oauth_request.sign_request(signature_method_hmac_sha1, consumer, None)
     print 'REQUEST (via headers)'
     print 'parameters: %s' % str(oauth_request.parameters)
