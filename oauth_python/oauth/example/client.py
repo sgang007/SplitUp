@@ -35,15 +35,15 @@ SERVER = 'localhost'
 PORT = 8080
 
 # fake urls for the test server (matches ones in server.py)
-REQUEST_TOKEN_URL = 'https://photos.example.net/request_token'
-ACCESS_TOKEN_URL = 'https://photos.example.net/access_token'
-AUTHORIZATION_URL = 'https://photos.example.net/authorize'
-CALLBACK_URL = 'http://printer.example.com/request_token_ready'
-RESOURCE_URL = 'http://photos.example.net/photos'
+REQUEST_TOKEN_URL = 'https://secure.splitwise.com/api/v3.0/get_request_token'
+ACCESS_TOKEN_URL = 'https://secure.splitwise.com/api/v3.0/get_access_token'
+AUTHORIZATION_URL = 'https://secure.splitwise.com/authorize'
+CALLBACK_URL = 'http://sgang007.github.io/SplitUp'
+RESOURCE_URL = 'http://google.com'
 
 # key and secret granted by the service provider for this consumer application - same as the MockOAuthDataStore
-CONSUMER_KEY = 'key'
-CONSUMER_SECRET = 'secret'
+CONSUMER_KEY = 'oum3MBJ25XcfC2ku0Ru669QPzGoNzzzMmHVYIcQ9'
+CONSUMER_SECRET = 'RFGSHC1X1IMnnsO42Jher6xgnYpU8JRuOtW2bwie'
 
 # example client using httplib with headers
 class SimpleOAuthClient(oauth.OAuthClient):
@@ -99,7 +99,7 @@ def run_example():
     print '* Obtain a request token ...'
     pause()
     oauth_request = oauth.OAuthRequest.from_consumer_and_token(consumer, callback=CALLBACK_URL, http_url=client.request_token_url)
-    oauth_request.sign_request(signature_method_plaintext, consumer, None)
+    oauth_request.sign_request(signature_method_hmac_sha1, consumer, None)
     print 'REQUEST (via headers)'
     print 'parameters: %s' % str(oauth_request.parameters)
     pause()
