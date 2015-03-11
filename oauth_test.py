@@ -25,7 +25,6 @@ client = oauth.Client(consumer)
 resp, content = client.request(request_token_url, "POST")
 if resp['status'] != '200':
     raise Exception("Invalid response %s." % resp['status'])
-
 request_token = dict(urlparse.parse_qsl(content))
 
 print "Request Token:"
@@ -38,16 +37,22 @@ print
 # below.
 
 print "Go to the following link in your browser:"
-print "%s?oauth_token=%s" % (authorize_url, request_token['oauth_token'])
-print 
+url="%s?oauth_token=%s" % (authorize_url, request_token['oauth_token'])
+# print '\nURL:',url
+resp, content=client.request(url,"POST")
+print "\nResponse:",resp
+print "\nContent:",content
+#print url
+#print
 
 # After the user has granted access to you, the consumer, the provider will
 # redirect you to whatever URL you have told them to redirect to. You can 
 # usually define this in the oauth_callback argument as well.
-accepted = 'n'
-while accepted.lower() == 'n':
-    accepted = raw_input('Have you authorized me? (y/n) ')
-oauth_verifier = raw_input('What is the PIN? ')
+#accepted = 'n'
+#while accepted.lower() == 'n':
+#    accepted = raw_input('Have you authorized me? (y/n) ')
+#oauth_verifier = raw_input('What is the PIN? ')
+
 
 # Step 3: Once the consumer has redirected the user back to the oauth_callback
 # URL you can request the access token the user has approved. You use the 
